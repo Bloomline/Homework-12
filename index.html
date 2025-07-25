@@ -179,3 +179,51 @@
       else if (obs.x + obs.w < 0) obs.x = width;
       if (obs.y > height) obs.y = -obs.h;
     }
+
+    // BORDER
+    function drawBorder() {
+      stroke(180,245,255,180);
+      strokeWeight(6);
+      noFill();
+      rect(0,0,width,height,22);
+      noStroke();
+    }
+
+    // EXIT
+    function createExit() {
+      return {
+        x: width-60, y: height/2-46, w: 36, h: 92, color: color(255,180,120)
+      };
+    }
+    function drawExit() {
+      fill(exit.color);
+      rect(exit.x, exit.y, exit.w, exit.h, 14);
+      fill(250,245,170);
+      textAlign(CENTER, CENTER);
+      textSize(18);
+      text("EXIT", exit.x + exit.w/2, exit.y + exit.h/2);
+    }
+
+    // WIN
+    function playerInExit() {
+      return (
+        player.x + player.r > exit.x && player.x - player.r < exit.x + exit.w &&
+        player.y + player.r > exit.y && player.y - player.r < exit.y + exit.h
+      );
+    }
+    function showWinMessage() {
+      fill(255,202,255);
+      textAlign(CENTER, CENTER);
+      textSize(32);
+      text("You Win, Amélie! 💙", width/2, height/2);
+    }
+  </script>
+  <div class="center" style="color:#b6f2ff;margin-top:12px;">
+    <p>
+      Use arrow keys or WASD to move Amélie.<br>
+      Click to add a pastel obstacle.<br>
+      Touch the exit to win!
+    </p>
+  </div>
+</body>
+</html>
